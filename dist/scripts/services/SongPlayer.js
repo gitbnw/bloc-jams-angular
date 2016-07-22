@@ -66,8 +66,7 @@
                  });
                  SongPlayer.currentSong = song;
                  setSong(song);
-
-                 SongPlayer.playSong(song);
+                 playSong(song);
 
              } else if (SongPlayer.currentSong === song) {
                  if (currentBuzzObject.isPaused()) {
@@ -98,7 +97,7 @@
              } else {
                  var song = currentAlbum.songs[currentSongIndex];
                  setSong(song);
-                 SongPlayer.playSong(song);
+                 playSong(song);
              }
          };
 
