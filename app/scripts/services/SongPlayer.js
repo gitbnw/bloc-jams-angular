@@ -15,6 +15,15 @@
                  currentBuzzObject.stop();
                  currentSong.playing = null;
              }
+         /**
+          * @function SongPlayer.playSong
+          * @desc Plays song
+          * @param {Object} song
+          */
+         var playSong = function(song) {
+             currentBuzzObject.play();
+             song.playing = true;
+         };
              /**
               * @desc Buzz object audio file
               * @type {Object}
@@ -63,15 +72,7 @@
              currentBuzzObject.pause();
              song.playing = false;
          };
-         /**
-          * @function SongPlayer.playSong
-          * @desc Plays song
-          * @param {Object} song
-          */
-         SongPlayer.playSong = function(song){
-           currentBuzzObject.play();
-           song.playing = true;
-         };
+
 
          return SongPlayer;
      }
