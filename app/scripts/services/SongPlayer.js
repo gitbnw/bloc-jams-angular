@@ -37,11 +37,14 @@
              });
              currentBuzzObject.bind('timeupdate', function() {
                  $rootScope.$apply(function() {
+
                      SongPlayer.currentTime = currentBuzzObject.getTime();
+
                  });
              });
 
              SongPlayer.currentSong = song;
+
          };
 
          /**
@@ -78,6 +81,12 @@
           */
          SongPlayer.currentTime = null;
          /**
+          * @desc Current volume of currently playing song
+          * @type {Number}
+          */
+         SongPlayer.volume = null;
+
+         /**
           * @function SongPlayer.play
           * @desc Plays or pauses song depending on current playing state
           * @param {Object} song
@@ -85,23 +94,11 @@
          SongPlayer.play = function(song) {
              song = song || SongPlayer.currentSong;
              if (SongPlayer.currentSong !== song) {
-                 if (currentBuzzObject) {
-                     stopSong(song);
-                 }
-
-                 currentBuzzObject = new buzz.sound(song.audioUrl, {
-                     formats: ['mp3'],
-                     preload: true
-                 });
-                 SongPlayer.currentSong = song;
                  setSong(song);
-
                  playSong(song);
-
              } else if (SongPlayer.currentSong === song) {
-
                  if (currentBuzzObject.isPaused()) {
-                     currentBuzzObject.play();
+                     playSong(song);
                  }
              }
          };
@@ -154,6 +151,11 @@
          SongPlayer.setCurrentTime = function(time) {
              if (currentBuzzObject) {
                  currentBuzzObject.setTime(time);
+             }
+         };
+          SongPlayer.setVolume = function(volume) {
+             if (currentBuzzObject) {
+                 currentBuzzObject.setVolume(volume);
              }
          };
          return SongPlayer;
