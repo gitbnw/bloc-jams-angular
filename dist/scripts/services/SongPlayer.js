@@ -44,6 +44,7 @@
              });
 
              SongPlayer.currentSong = song;
+            //  SongPlayer.volume = currentBuzzObject.getVolume();
 
          };
 
@@ -84,7 +85,7 @@
           * @desc Current volume of currently playing song
           * @type {Number}
           */
-         SongPlayer.volume = null;
+         SongPlayer.volume = 80;
 
          /**
           * @function SongPlayer.play
@@ -154,6 +155,7 @@
              }
          };
           SongPlayer.setVolume = function(volume) {
+            console.log(volume)
              if (currentBuzzObject) {
                  currentBuzzObject.setVolume(volume);
              }
