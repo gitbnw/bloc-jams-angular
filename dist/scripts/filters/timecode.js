@@ -2,7 +2,11 @@
     function timecode() {
         return function(seconds) {
 
+<<<<<<< HEAD
             var seconds = Number.parseFloat(seconds);
+=======
+          var seconds = Number.parseFloat(seconds);
+>>>>>>> angular-extracred
 
             if (Number.isNaN(seconds)) {
                 return '-:--';
