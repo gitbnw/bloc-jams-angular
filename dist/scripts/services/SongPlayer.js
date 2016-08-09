@@ -13,6 +13,7 @@
           * @desc Stops currently playing song and loads new audio file as currentBuzzObject
           * @param {Object} song
           */
+
          var setSong = function(song) {
              if (currentBuzzObject) {
                  currentBuzzObject.stop();
@@ -54,6 +55,7 @@
              SongPlayer.currentSong = song;
             //  SongPlayer.volume = currentBuzzObject.getVolume();
 
+
          };
 
          /**
@@ -75,6 +77,7 @@
              song.playing = null;
          };
 
+
          /**
           * @function getSongIndex
           * @desc Retrieve index of given song
@@ -94,6 +97,8 @@
           * @type {Number}
           */
          SongPlayer.volume = 80;
+
+         SongPlayer.muted = false
 
          /**
           * @function SongPlayer.play
@@ -163,11 +168,34 @@
              }
          };
           SongPlayer.setVolume = function(volume) {
-            console.log(volume)
              if (currentBuzzObject) {
                  currentBuzzObject.setVolume(volume);
+                 if (volume === 0) {
+                   SongPlayer.muted = true;
+                 } else {
+                   SongPlayer.muted = false;
+                 }   
              }
          };
+         var preVolume = null
+         SongPlayer.mute = function(playerBar) {
+            if (currentBuzzObject && !SongPlayer.muted) {
+                prevolume = currentBuzzObject.getVolume()
+                SongPlayer.setVolume(0);
+                playerBar.songPlayer.volume = 0;
+                SongPlayer.muted = true;
+            }
+        };
+        SongPlayer.unmute = function(playerBar) {
+           if (currentBuzzObject && SongPlayer.muted) {
+               SongPlayer.setVolume(prevolume);
+               playerBar.songPlayer.volume = prevolume;
+               SongPlayer.muted = false;
+
+           }
+       };
+
+
          return SongPlayer;
      }
 
